@@ -84,7 +84,7 @@ export default function Home() {
                 <Github size={24} />
               </a>
               <a
-                href="https://linkedin.com/in/naveenkanaparthi"
+                href="https://www.linkedin.com/in/naveenkanaparthi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-white dark:hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
@@ -270,7 +270,7 @@ export default function Home() {
                   <Github size={20} />
                 </a>
                 <a
-                  href="https://linkedin.com/in/naveenkanaparthi"
+                  href="https://www.linkedin.com/in/naveenkanaparthi"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white transition-colors"
