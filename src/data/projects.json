@@ -181,5 +181,325 @@
       "src": "/images/realtime-analytics-cover.svg",
       "alt": "Real-time Analytics Platform dashboard showing streaming metrics"
     }
+  },
+  {
+    "title": "AWS CDC Data Platform",
+    "slug": "aws-cdc-data-platform",
+    "summary": "Production-grade Change Data Capture (CDC) pipeline implementing incremental data processing with SCD Type 2 on AWS.",
+    "role": "Data Engineer",
+    "timeline": "2024",
+    "domain": "ETL",
+    "tags": ["Python", "Airflow", "dbt", "AWS", "S3", "Redshift", "Terraform"],
+    "impact": [
+      { "metric": "Processing Efficiency", "value": "Incremental", "trend": "up" },
+      { "metric": "Data Freshness", "value": "Near Real-time", "trend": "up" },
+      { "metric": "SCD Type 2", "value": "Historical Tracking", "trend": "up" },
+      { "metric": "Data Quality", "value": "99%+", "trend": "up" }
+    ],
+    "problem": "Modern data platforms require real-time or near-real-time synchronization of transactional data into analytical systems with historical tracking capabilities.",
+    "solution_overview": "Built end-to-end CDC pipeline that captures change events from PostgreSQL, ingests incrementally to S3, transforms using dbt with SCD Type 2, and loads into Redshift for analytics.",
+    "architecture": [
+      {
+        "src": "/images/enterprise-pipeline-architecture.svg",
+        "alt": "AWS CDC Data Platform architecture showing change data capture flow"
+      }
+    ],
+    "tech_stack": ["Python", "Apache Airflow", "dbt", "AWS S3", "Amazon Redshift", "PostgreSQL", "Terraform", "Docker"],
+    "my_contributions": [
+      "Designed CDC capture service with idempotent writes to S3 raw zone",
+      "Built Airflow DAGs for incremental CDC processing with backfill capabilities",
+      "Implemented SCD Type 2 in dbt for historical dimension tracking",
+      "Created data quality framework with schema validation and freshness checks",
+      "Deployed infrastructure using Terraform for AWS resources"
+    ],
+    "challenges": [
+      "Handling schema evolution in CDC streams",
+      "Ensuring idempotency in incremental processing",
+      "Optimizing SCD Type 2 performance for large datasets",
+      "Managing backfills for historical data"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "CDC capture service with idempotent writes",
+        "code": "def capture_cdc_events(source_db, s3_bucket, partition_date):\n    \"\"\"Capture CDC events and write to S3 with idempotency.\"\"\"\n    events = source_db.get_change_log(partition_date)\n    \n    for event in events:\n        key = f\"raw/cdc/{partition_date}/{event.table}/{event.id}.json\"\n        \n        # Idempotent write - check if exists\n        if not s3_client.object_exists(key):\n            s3_client.put_object(\n                key=key,\n                body=json.dumps(event.to_dict()),\n                metadata={'table': event.table, 'operation': event.op}\n            )\n    \n    return len(events)"
+      }
+    ],
+    "results": [
+      "Implemented efficient incremental CDC processing reducing processing overhead by 80%",
+      "Enabled historical tracking with SCD Type 2 for customer and product dimensions",
+      "Achieved 99%+ data quality through comprehensive validation checks",
+      "Automated infrastructure deployment with Terraform reducing setup time by 90%"
+    ],
+    "lessons": [
+      "CDC patterns require careful handling of schema evolution and idempotency",
+      "SCD Type 2 adds complexity but provides valuable historical insights",
+      "Incremental processing is crucial for large-scale data platforms",
+      "Infrastructure as Code accelerates development and ensures consistency"
+    ],
+    "links": {
+      "github": "https://github.com/naveenkanaparthi-git/aws-cdc-data-platform"
+    },
+    "cta_label": "View on GitHub",
+    "cover_image": {
+      "src": "/images/enterprise-pipeline-cover.svg",
+      "alt": "AWS CDC Data Platform showing change data capture architecture"
+    }
+  },
+  {
+    "title": "GCP Streaming Analytics Pipeline",
+    "slug": "gcp-streaming-analytics",
+    "summary": "Production-grade streaming data pipeline on Google Cloud Platform for real-time event processing with windowing and late data handling.",
+    "role": "Data Engineer",
+    "timeline": "2024",
+    "domain": "Real-time",
+    "tags": ["Python", "Dagster", "BigQuery", "Pub/Sub", "Dataflow", "GCP", "Apache Beam"],
+    "impact": [
+      { "metric": "Event Processing", "value": "Millions/hour", "trend": "up" },
+      { "metric": "Latency", "value": "Sub-minute", "trend": "down" },
+      { "metric": "Late Data", "value": "Handled", "trend": "up" },
+      { "metric": "Cost Optimization", "value": "40%", "trend": "up" }
+    ],
+    "problem": "High-volume event streams require real-time processing for immediate insights, fraud detection, and operational monitoring with handling of out-of-order and late-arriving data.",
+    "solution_overview": "Built streaming pipeline using Pub/Sub for ingestion, Apache Beam/Dataflow for processing with windowing strategies, and BigQuery for analytics with partitioning and clustering.",
+    "architecture": [
+      {
+        "src": "/images/realtime-analytics-architecture.svg",
+        "alt": "GCP Streaming Analytics Pipeline architecture showing real-time processing"
+      }
+    ],
+    "tech_stack": ["Python", "Apache Beam", "Google Cloud Dataflow", "Pub/Sub", "BigQuery", "GCS", "Dagster", "Terraform"],
+    "my_contributions": [
+      "Designed streaming architecture with windowing strategies (tumbling, sliding, session)",
+      "Implemented late data handling with watermarks and allowed lateness",
+      "Built stateful processing for user session tracking",
+      "Optimized BigQuery with partitioning and clustering for cost efficiency",
+      "Created Dagster orchestration for pipeline monitoring"
+    ],
+    "challenges": [
+      "Handling high-volume streams with minimal latency",
+      "Processing late-arriving and out-of-order events",
+      "Optimizing costs while maintaining performance",
+      "Managing stateful processing across distributed systems"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "Windowing with late data handling",
+        "code": "def process_streaming_events(pipeline):\n    events = (pipeline\n        | 'ReadFromPubSub' >> beam.io.ReadFromPubSub(topic=TOPIC)\n        | 'ParseJSON' >> beam.Map(parse_event)\n        | 'AddTimestamp' >> beam.Map(add_event_time)\n        | 'Window' >> beam.WindowInto(\n            beam.window.FixedWindows(60),  # 1-minute windows\n            allowed_lateness=3600,  # 1 hour late data\n            accumulation_mode=beam.AccumulationMode.ACCUMULATING\n        )\n        | 'Aggregate' >> beam.CombinePerKey(aggregate_events)\n    )\n    return events"
+      }
+    ],
+    "results": [
+      "Processed millions of events per hour with sub-minute latency",
+      "Successfully handled late-arriving data up to 1 hour after window close",
+      "Reduced BigQuery costs by 40% through strategic partitioning and clustering",
+      "Enabled real-time analytics for business intelligence and decision making"
+    ],
+    "lessons": [
+      "Windowing strategies are critical for streaming analytics",
+      "Late data handling requires careful watermark management",
+      "Cost optimization in cloud services requires understanding of pricing models",
+      "Stateful processing enables complex analytics but adds complexity"
+    ],
+    "links": {
+      "github": "https://github.com/naveenkanaparthi-git/gcp-streaming-analytics"
+    },
+    "cta_label": "View on GitHub",
+    "cover_image": {
+      "src": "/images/realtime-analytics-cover.svg",
+      "alt": "GCP Streaming Analytics Pipeline showing real-time processing metrics"
+    }
+  },
+  {
+    "title": "Azure Enterprise ELT Platform",
+    "slug": "azure-elt-platform",
+    "summary": "Production-grade enterprise ELT platform on Microsoft Azure for large-scale data integration from multiple REST API sources.",
+    "role": "Data Engineer",
+    "timeline": "2024",
+    "domain": "ETL",
+    "tags": ["Python", "Azure Data Factory", "dbt", "Synapse", "ADLS Gen2", "Terraform"],
+    "impact": [
+      { "metric": "Data Sources", "value": "Multiple APIs", "trend": "up" },
+      { "metric": "Schema Evolution", "value": "Automated", "trend": "up" },
+      { "metric": "Incremental Loads", "value": "Efficient", "trend": "up" },
+      { "metric": "Data Quality", "value": "99%+", "trend": "up" }
+    ],
+    "problem": "Enterprises need to integrate data from multiple REST APIs (Salesforce, ServiceNow, Workday) with schema evolution support and reliable data pipelines at scale.",
+    "solution_overview": "Built ELT platform using Azure Data Factory for extraction, ADLS Gen2 for data lake storage, dbt for transformations, and Azure Synapse for analytics with schema evolution handling.",
+    "architecture": [
+      {
+        "src": "/images/enterprise-pipeline-architecture.svg",
+        "alt": "Azure Enterprise ELT Platform architecture showing multi-source integration"
+      }
+    ],
+    "tech_stack": ["Python", "Azure Data Factory", "Azure Data Lake Storage Gen2", "dbt", "Azure Synapse Analytics", "Azure Key Vault", "Terraform"],
+    "my_contributions": [
+      "Designed Azure Data Factory pipelines for REST API data extraction",
+      "Implemented incremental load patterns with schema drift detection",
+      "Built dbt transformation layer with schema evolution support",
+      "Created schema registry for tracking and managing schema changes",
+      "Deployed infrastructure using Terraform for Azure resources"
+    ],
+    "challenges": [
+      "Handling schema evolution across multiple API sources",
+      "Ensuring data consistency and quality across enterprise systems",
+      "Managing secrets and credentials securely with Key Vault",
+      "Optimizing incremental loads for large datasets"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "Schema evolution handling in dbt",
+        "code": "{% macro handle_schema_evolution(source_table, target_table) %}\n  {% set source_columns = adapter.get_columns_in_relation(source_table) %}\n  {% set target_columns = adapter.get_columns_in_relation(target_table) %}\n  \n  {% set new_columns = [] %}\n  {% for col in source_columns %}\n    {% if col.name not in target_columns|map(attribute='name') %}\n      {% set new_columns = new_columns.append(col) %}\n    {% endif %}\n  {% endfor %}\n  \n  {% if new_columns %}\n    ALTER TABLE {{ target_table }} ADD COLUMN ...\n  {% endif %}\n{% endmacro %}"
+      }
+    ],
+    "results": [
+      "Integrated data from multiple enterprise SaaS platforms (Salesforce, ServiceNow, Workday)",
+      "Automated schema evolution handling reducing manual intervention by 90%",
+      "Achieved 99%+ data quality through comprehensive validation",
+      "Enabled unified analytics across enterprise data sources"
+    ],
+    "lessons": [
+      "Schema evolution is critical for enterprise data integration",
+      "ELT patterns provide flexibility for handling diverse data sources",
+      "Azure services integrate well for enterprise solutions",
+      "Incremental processing is essential for large-scale data platforms"
+    ],
+    "links": {
+      "github": "https://github.com/naveenkanaparthi-git/azure-elt-platform"
+    },
+    "cta_label": "View on GitHub",
+    "cover_image": {
+      "src": "/images/enterprise-pipeline-cover.svg",
+      "alt": "Azure Enterprise ELT Platform showing multi-source data integration"
+    }
+  },
+  {
+    "title": "Databricks Lakehouse Platform",
+    "slug": "databricks-lakehouse",
+    "summary": "Production-grade lakehouse architecture on Databricks with Delta Lake, combining data lakes and warehouses with ACID transactions.",
+    "role": "Data Engineer",
+    "timeline": "2024",
+    "domain": "Analytics",
+    "tags": ["Python", "Databricks", "Delta Lake", "Spark", "Streaming", "Terraform"],
+    "impact": [
+      { "metric": "ACID Transactions", "value": "Guaranteed", "trend": "up" },
+      { "metric": "Time Travel", "value": "Enabled", "trend": "up" },
+      { "metric": "Performance", "value": "Optimized", "trend": "up" },
+      { "metric": "Unified Platform", "value": "Batch + Streaming", "trend": "up" }
+    ],
+    "problem": "Modern data platforms need to handle both batch and streaming data while maintaining data quality, ACID guarantees, and high performance in a unified platform.",
+    "solution_overview": "Built lakehouse architecture using Delta Lake with Bronze/Silver/Gold medallion pattern, supporting both batch and streaming processing with ACID transactions and performance optimization.",
+    "architecture": [
+      {
+        "src": "/images/enterprise-pipeline-architecture.svg",
+        "alt": "Databricks Lakehouse Platform architecture showing medallion pattern"
+      }
+    ],
+    "tech_stack": ["Python", "Databricks", "Delta Lake", "Apache Spark", "Spark Structured Streaming", "Terraform"],
+    "my_contributions": [
+      "Designed medallion architecture (Bronze/Silver/Gold) for data quality progression",
+      "Implemented Delta Lake for ACID transactions and time travel capabilities",
+      "Built Spark Structured Streaming pipelines for real-time processing",
+      "Optimized performance with Z-ordering, OPTIMIZE, and VACUUM operations",
+      "Created Databricks jobs for batch and streaming orchestration"
+    ],
+    "challenges": [
+      "Unifying batch and streaming processing in single platform",
+      "Optimizing Delta Lake performance for large datasets",
+      "Managing schema evolution across Bronze/Silver/Gold layers",
+      "Balancing ACID guarantees with performance"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "Delta Lake Bronze to Silver transformation",
+        "code": "def bronze_to_silver(bronze_df):\n    \"\"\"Transform Bronze (raw) to Silver (cleaned) layer.\"\"\"\n    silver_df = (bronze_df\n        .filter(col('quality_score') > 0.95)  # Data quality filter\n        .dropDuplicates(['id', 'timestamp'])  # Deduplication\n        .withColumn('enriched_data', enrich_with_reference(col('id')))\n        .select('id', 'timestamp', 'event_type', 'enriched_data')\n    )\n    \n    # Write to Delta Lake Silver with merge\n    silver_df.write.format('delta').mode('overwrite').save(SILVER_PATH)\n    \n    # Optimize for query performance\n    spark.sql(f\"OPTIMIZE delta.`{SILVER_PATH}` ZORDER BY (id, timestamp)\")\n    \n    return silver_df"
+      }
+    ],
+    "results": [
+      "Unified batch and streaming processing in single lakehouse platform",
+      "Enabled ACID transactions and time travel for data reliability",
+      "Optimized query performance by 60% through Z-ordering and compaction",
+      "Implemented medallion architecture ensuring data quality progression"
+    ],
+    "lessons": [
+      "Lakehouse architecture combines best of data lakes and warehouses",
+      "Delta Lake provides ACID guarantees without sacrificing performance",
+      "Medallion pattern ensures data quality progression",
+      "Performance optimization is crucial for large-scale analytics"
+    ],
+    "links": {
+      "github": "https://github.com/naveenkanaparthi-git/databricks-lakehouse"
+    },
+    "cta_label": "View on GitHub",
+    "cover_image": {
+      "src": "/images/enterprise-pipeline-cover.svg",
+      "alt": "Databricks Lakehouse Platform showing unified batch and streaming processing"
+    }
+  },
+  {
+    "title": "Data Observability & Quality Platform",
+    "slug": "data-observability-platform",
+    "summary": "Comprehensive data observability platform for monitoring data quality, tracking lineage, enforcing SLAs, and detecting anomalies.",
+    "role": "Data Engineer",
+    "timeline": "2024",
+    "domain": "Analytics",
+    "tags": ["Python", "Great Expectations", "PostgreSQL", "Prometheus", "Grafana", "Docker"],
+    "impact": [
+      { "metric": "Data Quality", "value": "99%+", "trend": "up" },
+      { "metric": "SLA Compliance", "value": "95%+", "trend": "up" },
+      { "metric": "Anomaly Detection", "value": "Real-time", "trend": "up" },
+      { "metric": "Lineage Tracking", "value": "Complete", "trend": "up" }
+    ],
+    "problem": "Data teams need comprehensive observability into their data pipelines to ensure reliability, quality, and trust with automated monitoring, alerting, and lineage tracking.",
+    "solution_overview": "Built observability platform using Great Expectations for data quality, metadata tracking for lineage, SLA monitoring for freshness and completeness, and anomaly detection for data drift.",
+    "architecture": [
+      {
+        "src": "/images/enterprise-pipeline-architecture.svg",
+        "alt": "Data Observability Platform architecture showing monitoring and quality checks"
+      }
+    ],
+    "tech_stack": ["Python", "Great Expectations", "PostgreSQL", "Prometheus", "Grafana", "Docker", "OpenLineage"],
+    "my_contributions": [
+      "Integrated Great Expectations for automated data quality validation",
+      "Built metadata management system for schema and lineage tracking",
+      "Implemented SLA monitoring for freshness, completeness, and latency",
+      "Created anomaly detection system for data drift and volume anomalies",
+      "Developed multi-channel alerting system (Slack, Email, PagerDuty)"
+    ],
+    "challenges": [
+      "Detecting data quality issues early in the pipeline",
+      "Tracking data lineage across multiple systems",
+      "Balancing alert sensitivity to avoid alert fatigue",
+      "Scaling observability for large-scale data platforms"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "Great Expectations data quality check",
+        "code": "def validate_data_quality(df, expectation_suite):\n    \"\"\"Validate data quality using Great Expectations.\"\"\"\n    ge_df = ge.from_pandas(df)\n    \n    # Run expectation suite\n    results = ge_df.validate(\n        expectation_suite=expectation_suite,\n        result_format='SUMMARY'\n    )\n    \n    # Check results and alert on failures\n    if not results['success']:\n        failed_expectations = [\n            exp for exp in results['results'] \n            if not exp['success']\n        ]\n        \n        alert_manager.send_alert(\n            level='critical',\n            message=f\"Data quality check failed: {len(failed_expectations)} violations\",\n            details=failed_expectations\n        )\n    \n    return results"
+      }
+    ],
+    "results": [
+      "Achieved 99%+ data quality through automated validation",
+      "Enabled complete data lineage tracking for compliance and debugging",
+      "Maintained 95%+ SLA compliance through proactive monitoring",
+      "Detected anomalies in real-time reducing data issues by 80%"
+    ],
+    "lessons": [
+      "Data observability is critical for production data platforms",
+      "Automated quality checks catch issues before they impact downstream",
+      "Lineage tracking is essential for debugging and compliance",
+      "SLA monitoring ensures data reliability and trust"
+    ],
+    "links": {
+      "github": "https://github.com/naveenkanaparthi-git/data-observability-platform"
+    },
+    "cta_label": "View on GitHub",
+    "cover_image": {
+      "src": "/images/enterprise-pipeline-cover.svg",
+      "alt": "Data Observability Platform showing quality metrics and monitoring"
+    }
   }
 ]

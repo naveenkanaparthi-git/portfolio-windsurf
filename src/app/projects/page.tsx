@@ -15,7 +15,7 @@ import { ProjectCard } from "@/components/sections/project-card";
 import { projects } from "@/lib/data";
 
 const domains = ["All", "ETL", "Real-time", "MLOps", "Analytics"];
-const technologies = ["All", "Python", "Dagster", "Airflow", "Kafka", "BigQuery", "Snowflake"];
+const technologies = ["All", "Python", "Dagster", "Airflow", "Kafka", "BigQuery", "Snowflake", "dbt", "AWS", "GCP", "Azure", "Databricks", "Spark", "Terraform", "Delta Lake", "Great Expectations"];
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState("");
