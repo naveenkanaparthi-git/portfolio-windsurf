@@ -1,0 +1,264 @@
+[
+  {
+    "category": "Programming Languages",
+    "skills": [
+      {
+        "name": "Python",
+        "proficiency": "Advanced",
+        "description": "Data analysis, pipeline development, and automation with Pandas, NumPy, Matplotlib",
+        "icon": "python",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+      },
+      {
+        "name": "SQL",
+        "proficiency": "Expert", 
+        "description": "Advanced querying, data extraction, validation, and database optimization",
+        "icon": "database",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+      },
+      {
+        "name": "R",
+        "proficiency": "Intermediate",
+        "description": "Statistical analysis and data visualization",
+        "icon": "r",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"
+      },
+      {
+        "name": "Java",
+        "proficiency": "Intermediate",
+        "description": "Enterprise applications and big data processing",
+        "icon": "java",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+      },
+      {
+        "name": "Scala",
+        "proficiency": "Beginner",
+        "description": "Functional programming for big data with Spark",
+        "icon": "scala",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scala/scala-original.svg"
+      }
+    ]
+  },
+  {
+    "category": "Data Engineering & Analytics Tools",
+    "skills": [
+      {
+        "name": "Apache Airflow",
+        "proficiency": "Advanced",
+        "description": "Workflow orchestration and ETL pipeline automation",
+        "icon": "airflow",
+        "logo": "https://airflow.apache.org/docs/apache-airflow/stable/_images/pin_large.png"
+      },
+      {
+        "name": "Dagster",
+        "proficiency": "Advanced",
+        "description": "Modern data orchestration with asset-based pipelines",
+        "icon": "dagster",
+        "logo": "https://docs.dagster.io/_next/image?url=%2Fimages%2Flogos%2Fdagster-primary-mark.png&w=64&q=75"
+      },
+      {
+        "name": "Apache Kafka",
+        "proficiency": "Advanced",
+        "description": "Real-time data streaming and event processing",
+        "icon": "kafka",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg"
+      },
+      {
+        "name": "Apache Spark",
+        "proficiency": "Advanced",
+        "description": "Large-scale data processing and analytics",
+        "icon": "spark",
+        "logo": "https://spark.apache.org/images/spark-logo-trademark.png"
+      },
+      {
+        "name": "Power BI",
+        "proficiency": "Advanced",
+        "description": "Dashboard development and business intelligence reporting",
+        "icon": "powerbi",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"
+      },
+      {
+        "name": "Tableau",
+        "proficiency": "Advanced",
+        "description": "Data visualization and interactive dashboard creation",
+        "icon": "tableau",
+        "logo": "https://cdn.worldvectorlogo.com/logos/tableau-software.svg"
+      },
+      {
+        "name": "Microsoft Excel",
+        "proficiency": "Expert",
+        "description": "Advanced data analysis, pivot tables, and automation",
+        "icon": "excel",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg"
+      },
+      {
+        "name": "Jupyter",
+        "proficiency": "Advanced",
+        "description": "Interactive data analysis and prototyping",
+        "icon": "jupyter",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg"
+      }
+    ]
+  },
+  {
+    "category": "Cloud Platforms",
+    "skills": [
+      {
+        "name": "AWS",
+        "proficiency": "Advanced",
+        "description": "S3, EC2, Lambda, RDS, Redshift, and cloud data solutions",
+        "icon": "aws",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg"
+      },
+      {
+        "name": "Google Cloud Platform",
+        "proficiency": "Advanced",
+        "description": "BigQuery, Cloud Storage, Dataflow, and data analytics services",
+        "icon": "gcp",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"
+      },
+      {
+        "name": "Microsoft Azure",
+        "proficiency": "Intermediate",
+        "description": "Azure Data Factory, Synapse Analytics, and cloud services",
+        "icon": "azure",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg"
+      }
+    ]
+  },
+  {
+    "category": "Databases & Storage",
+    "skills": [
+      {
+        "name": "MySQL",
+        "proficiency": "Advanced",
+        "description": "Relational database design and query optimization",
+        "icon": "mysql",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+      },
+      {
+        "name": "SQL Server",
+        "proficiency": "Advanced",
+        "description": "Enterprise database management and stored procedures",
+        "icon": "sqlserver",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg"
+      },
+      {
+        "name": "BigQuery",
+        "proficiency": "Advanced",
+        "description": "Cloud data warehouse and large-scale analytics",
+        "icon": "bigquery",
+        "logo": "https://cdn.worldvectorlogo.com/logos/google-bigquery-logo-1.svg"
+      },
+      {
+        "name": "PostgreSQL",
+        "proficiency": "Advanced",
+        "description": "Advanced relational database with JSON support",
+        "icon": "postgresql",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+      },
+      {
+        "name": "MongoDB",
+        "proficiency": "Intermediate",
+        "description": "NoSQL document database for flexible schemas",
+        "icon": "mongodb",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+      },
+      {
+        "name": "Redis",
+        "proficiency": "Intermediate",
+        "description": "In-memory data structure store for caching and real-time applications",
+        "icon": "redis",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg"
+      }
+    ]
+  },
+  {
+    "category": "DevOps & Infrastructure",
+    "skills": [
+      {
+        "name": "Docker",
+        "proficiency": "Advanced",
+        "description": "Containerization for data pipelines and applications",
+        "icon": "docker",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+      },
+      {
+        "name": "Kubernetes",
+        "proficiency": "Intermediate",
+        "description": "Container orchestration for scalable data platforms",
+        "icon": "kubernetes",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+      },
+      {
+        "name": "Git",
+        "proficiency": "Advanced",
+        "description": "Version control and collaborative development",
+        "icon": "git",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+      },
+      {
+        "name": "Terraform",
+        "proficiency": "Intermediate",
+        "description": "Infrastructure as code for cloud resources",
+        "icon": "terraform",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg"
+      }
+    ]
+  },
+  {
+    "category": "Monitoring & Analytics",
+    "skills": [
+      {
+        "name": "Grafana",
+        "proficiency": "Intermediate",
+        "description": "Data visualization and monitoring dashboards",
+        "icon": "grafana",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg"
+      },
+      {
+        "name": "Prometheus",
+        "proficiency": "Intermediate",
+        "description": "Monitoring and alerting toolkit",
+        "icon": "prometheus",
+        "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg"
+      },
+      {
+        "name": "Looker",
+        "proficiency": "Intermediate",
+        "description": "Business intelligence and data platform",
+        "icon": "looker",
+        "logo": "https://looker.com/assets/img/images/logos/looker_logo.svg"
+      }
+    ]
+  },
+  {
+    "category": "Soft Skills",
+    "skills": [
+      {
+        "name": "Problem-solving",
+        "proficiency": "Expert",
+        "description": "Analytical thinking and creative solution development",
+        "icon": "lightbulb"
+      },
+      {
+        "name": "Communication",
+        "proficiency": "Advanced",
+        "description": "Technical documentation and cross-functional collaboration",
+        "icon": "users"
+      },
+      {
+        "name": "Storytelling",
+        "proficiency": "Advanced",
+        "description": "Data storytelling and insight presentation",
+        "icon": "presentation"
+      },
+      {
+        "name": "Project Management",
+        "proficiency": "Advanced",
+        "description": "Agile methodologies and cross-functional team leadership",
+        "icon": "project"
+      }
+    ]
+  }
+]

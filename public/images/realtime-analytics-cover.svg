@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-label="Real-time analytics cover">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <text x="80" y="170" font-family="ui-sans-serif, system-ui" font-size="46" font-weight="800" fill="#fff">Real-time Analytics Platform</text>
+  <rect x="80" y="192" width="560" height="10" rx="5" fill="url(#accent)"/>
+  <text x="80" y="250" font-family="ui-sans-serif, system-ui" font-size="24" fill="#94a3b8">Streaming ingestion, low-latency processing, and operational monitoring</text>
+
+  <g>
+    <rect x="80" y="310" width="1040" height="285" rx="26" fill="#0f172a" stroke="#1f2937"/>
+    <path d="M160 450h900" stroke="#334155" stroke-width="10" stroke-linecap="round"/>
+    <path d="M160 450c110-70 220 70 330 0s220 70 330 0 220 70 240 0" stroke="#f97316" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.7"/>
+  </g>
+</svg>

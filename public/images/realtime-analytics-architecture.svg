@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600" role="img" aria-label="Real-time analytics architecture">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f97316"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" rx="24" fill="#0b1220"/>
+  <text x="60" y="90" font-family="ui-sans-serif, system-ui" font-size="36" font-weight="800" fill="#fff">Real-time Analytics Platform</text>
+  <text x="60" y="130" font-family="ui-sans-serif, system-ui" font-size="20" fill="#94a3b8">Kafka → stream processing → warehouse → dashboards + monitoring</text>
+
+  <g font-family="ui-sans-serif, system-ui" font-size="18" fill="#e2e8f0">
+    <rect x="80" y="240" width="260" height="120" rx="18" fill="#111827" stroke="#1f2937"/>
+    <text x="110" y="290">Event Producers</text>
+    <text x="110" y="322" fill="#94a3b8">Apps / services</text>
+
+    <rect x="410" y="240" width="260" height="120" rx="18" fill="#111827" stroke="#1f2937"/>
+    <text x="440" y="290">Kafka</text>
+    <text x="440" y="322" fill="#94a3b8">Topics + retention</text>
+
+    <rect x="740" y="200" width="380" height="120" rx="18" fill="#111827" stroke="#1f2937"/>
+    <text x="770" y="250">Stream Processing</text>
+    <text x="770" y="282" fill="#94a3b8">Spark Streaming / aggregations</text>
+
+    <rect x="740" y="360" width="380" height="120" rx="18" fill="#111827" stroke="#1f2937"/>
+    <text x="770" y="410">BigQuery + BI</text>
+    <text x="770" y="442" fill="#94a3b8">Dashboards + ad-hoc analysis</text>
+
+    <path d="M340 300h70" stroke="url(#a)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M670 300h70" stroke="url(#a)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M930 320v40" stroke="url(#a)" stroke-width="6" stroke-linecap="round"/>
+
+    <rect x="80" y="420" width="590" height="60" rx="18" fill="#111827" stroke="#1f2937"/>
+    <text x="110" y="458" fill="#94a3b8">Observability: metrics, logs, alerts (Prometheus / Grafana)</text>
+  </g>
+</svg>

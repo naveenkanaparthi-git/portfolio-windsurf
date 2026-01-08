@@ -1,0 +1,185 @@
+[
+  {
+    "title": "Clinical Data Analytics Platform",
+    "slug": "clinical-data-analytics-platform",
+    "summary": "Comprehensive data analysis platform supporting clinical and operational decision-making at Myriad Genetics.",
+    "role": "Data Analyst",
+    "timeline": "Jan 2023 - Nov 2023",
+    "domain": "Analytics",
+    "tags": ["Python", "SQL", "Power BI", "Tableau", "Excel", "Healthcare"],
+    "impact": [
+      { "metric": "Data Processing", "value": "1M+ records/day", "trend": "up" },
+      { "metric": "Dashboard Users", "value": "50+", "trend": "up" },
+      { "metric": "Report Generation Time", "value": "75%", "trend": "down" },
+      { "metric": "Decision Support", "value": "99%", "trend": "up" }
+    ],
+    "problem": "Clinical and operational teams needed centralized access to patient data insights and performance metrics to support decision-making processes.",
+    "solution_overview": "Built comprehensive analytics platform with automated data pipelines, interactive dashboards, and real-time reporting capabilities for healthcare operations.",
+    "architecture": [
+      {
+        "src": "/images/clinical-analytics-architecture.svg",
+        "alt": "Clinical analytics platform architecture showing data flow and dashboard integration"
+      }
+    ],
+    "tech_stack": ["Python", "SQL", "Power BI", "Tableau", "Excel", "Healthcare Data Standards"],
+    "my_contributions": [
+      "Developed SQL queries for data extraction and validation from clinical databases",
+      "Created interactive dashboards using Power BI and Tableau for key performance metrics",
+      "Collaborated with cross-functional teams to deliver actionable insights",
+      "Implemented data validation processes to ensure accuracy and compliance"
+    ],
+    "challenges": [
+      "Ensuring HIPAA compliance and data privacy",
+      "Integrating multiple healthcare data sources",
+      "Creating user-friendly dashboards for non-technical stakeholders"
+    ],
+    "code_snippets": [
+      {
+        "language": "sql",
+        "caption": "Clinical data validation query",
+        "code": "WITH patient_metrics AS (\n  SELECT \n    patient_id,\n    test_date,\n    test_result,\n    CASE \n      WHEN test_result IS NULL THEN 'Missing'\n      WHEN test_result < 0 THEN 'Invalid'\n      ELSE 'Valid'\n    END as data_quality\n  FROM clinical_tests\n  WHERE test_date >= DATEADD(month, -3, GETDATE())\n)\nSELECT \n  data_quality,\n  COUNT(*) as record_count,\n  ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(), 2) as percentage\nFROM patient_metrics\nGROUP BY data_quality;"
+      }
+    ],
+    "results": [
+      "Processed 1M+ clinical records daily with 99% accuracy",
+      "Reduced report generation time by 75% through automation",
+      "Enabled data-driven decisions for 50+ healthcare professionals",
+      "Improved operational efficiency through real-time dashboards"
+    ],
+    "lessons": [
+      "Healthcare data requires strict validation and compliance measures",
+      "User-friendly visualizations are crucial for clinical adoption",
+      "Cross-functional collaboration enhances insight quality"
+    ],
+    "links": {
+      "caseStudy": "/projects/clinical-data-analytics-platform"
+    },
+    "cta_label": "Read Full Case Study",
+    "cover_image": {
+      "src": "/images/clinical-analytics-cover.svg",
+      "alt": "Clinical Data Analytics Platform dashboard showing healthcare metrics"
+    }
+  },
+  {
+    "title": "Enterprise Data Pipeline Platform",
+    "slug": "enterprise-data-pipeline-platform", 
+    "summary": "Unified enterprise data sources into BigQuery with automated ETL pipelines and comprehensive data validation for Apple Inc.",
+    "role": "Data Engineer (Consultant via TCS)",
+    "timeline": "Nov 2023 - Aug 2024",
+    "domain": "ETL, Data Engineering",
+    "tags": ["Python", "Dagster", "BigQuery", "Kafka", "API Integration", "Parquet"],
+    "impact": [
+      { "metric": "Data Latency", "value": "30%", "trend": "down" },
+      { "metric": "Schema Coverage", "value": "95%+", "trend": "up" },
+      { "metric": "Query Performance", "value": "40%", "trend": "up" },
+      { "metric": "Data Accuracy", "value": "99.5%", "trend": "up" }
+    ],
+    "problem": "Enterprise data was fragmented across multiple systems, hindering comprehensive analytics and business intelligence initiatives.",
+    "solution_overview": "Built unified data pipeline with automated ingestion, transformation, and loading processes using modern data engineering tools and cloud infrastructure.",
+    "architecture": [
+      {
+        "src": "/images/enterprise-pipeline-architecture.svg",
+        "alt": "Enterprise data pipeline architecture showing data flow and processing stages"
+      }
+    ],
+    "tech_stack": ["Python", "Dagster", "Google Cloud Platform", "BigQuery", "Apache Kafka", "Parquet", "Docker"],
+    "my_contributions": [
+      "Designed scalable data pipeline architecture for enterprise-scale processing",
+      "Built automated ETL processes with comprehensive error handling and monitoring",
+      "Implemented data validation and quality checks throughout the pipeline",
+      "Optimized BigQuery performance through strategic partitioning and clustering"
+    ],
+    "challenges": [
+      "Handling diverse data formats and schemas from multiple sources",
+      "Ensuring data consistency and quality across enterprise systems",
+      "Meeting strict performance and reliability requirements"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "Automated data validation pipeline",
+        "code": "@asset(partitions_def=daily_partitions)\ndef validate_enterprise_data(context, raw_data):\n    partition_key = context.partition_key\n    validation_results = []\n    \n    for record in raw_data:\n        validation_result = {\n            'record_id': record.get('id'),\n            'timestamp': partition_key,\n            'is_valid': True,\n            'errors': []\n        }\n        \n        # Validate required fields\n        required_fields = ['id', 'timestamp', 'source_system']\n        for field in required_fields:\n            if not record.get(field):\n                validation_result['is_valid'] = False\n                validation_result['errors'].append(f'Missing {field}')\n        \n        validation_results.append(validation_result)\n    \n    return validation_results"
+      }
+    ],
+    "results": [
+      "Achieved 95%+ schema coverage across all enterprise data sources",
+      "Reduced data processing latency by 30% through optimized pipelines",
+      "Enabled 40% faster analytical queries through improved data organization",
+      "Maintained 99.5% data accuracy through comprehensive validation"
+    ],
+    "lessons": [
+      "Enterprise data integration requires robust error handling and monitoring",
+      "Performance optimization is crucial for large-scale data processing",
+      "Comprehensive validation prevents downstream data quality issues"
+    ],
+    "links": {
+      "caseStudy": "/projects/enterprise-data-pipeline-platform"
+    },
+    "cta_label": "Read Full Case Study",
+    "cover_image": {
+      "src": "/images/enterprise-pipeline-cover.svg",
+      "alt": "Enterprise Data Pipeline Platform showing data processing metrics"
+    }
+  },
+  {
+    "title": "Real-time Analytics Platform",
+    "slug": "realtime-analytics-platform",
+    "summary": "Built streaming analytics platform for Qualcomm Technologies Inc processing high-volume data with real-time insights and monitoring.",
+    "role": "Data Engineer (Consultant via TCS)",
+    "timeline": "Sep 2024 - Present",
+    "domain": "Real-time Analytics, Streaming",
+    "tags": ["Python", "Apache Kafka", "Spark Streaming", "BigQuery", "GCP", "Monitoring"],
+    "impact": [
+      { "metric": "Data Processing", "value": "500K+ events/sec", "trend": "up" },
+      { "metric": "Query Latency", "value": "Sub-second", "trend": "down" },
+      { "metric": "System Uptime", "value": "99.9%", "trend": "up" },
+      { "metric": "Cost Efficiency", "value": "40%", "trend": "up" }
+    ],
+    "problem": "Business teams needed real-time insights from high-volume data streams to make immediate operational and strategic decisions.",
+    "solution_overview": "Implemented streaming analytics architecture with Kafka for ingestion, Spark for processing, and BigQuery for analytical queries with comprehensive monitoring.",
+    "architecture": [
+      {
+        "src": "/images/realtime-analytics-architecture.svg",
+        "alt": "Real-time analytics platform architecture showing streaming data flow"
+      }
+    ],
+    "tech_stack": ["Python", "Apache Kafka", "Apache Spark", "BigQuery", "Google Cloud Platform", "Prometheus", "Grafana"],
+    "my_contributions": [
+      "Designed streaming data architecture for high-throughput processing",
+      "Built real-time data processing pipelines using Spark Streaming",
+      "Implemented comprehensive monitoring and alerting systems",
+      "Optimized system performance for cost-effective operations"
+    ],
+    "challenges": [
+      "Handling high-volume data streams with minimal latency",
+      "Ensuring system reliability and fault tolerance",
+      "Balancing performance with cost optimization"
+    ],
+    "code_snippets": [
+      {
+        "language": "python",
+        "caption": "Real-time stream processing with Spark",
+        "code": "from pyspark.sql import SparkSession\nfrom pyspark.sql.functions import *\nfrom pyspark.sql.types import *\n\ndef process_realtime_stream(spark):\n    # Read from Kafka stream\n    df = spark \\\n        .readStream \\\n        .format(\"kafka\") \\\n        .option(\"kafka.bootstrap.servers\", \"localhost:9092\") \\\n        .option(\"subscribe\", \"events\") \\\n        .load()\n    \n    # Parse and transform data\n    parsed_df = df.select(\n        col(\"timestamp\").cast(\"timestamp\"),\n        from_json(col(\"value\").cast(\"string\"), event_schema).alias(\"data\")\n    ).select(\n        col(\"timestamp\"),\n        col(\"data.event_type\"),\n        col(\"data.user_id\"),\n        col(\"data.metrics\")\n    )\n    \n    # Aggregate in real-time\n    aggregated = parsed_df \\\n        .groupBy(\n            window(col(\"timestamp\"), \"1 minute\"),\n            col(\"event_type\")\n        ) \\\n        .agg(\n            count(\"*\").alias(\"event_count\"),\n            avg(\"metrics.value\").alias(\"avg_value\")\n        )\n    \n    return aggregated"
+      }
+    ],
+    "results": [
+      "Processing 500K+ events per second with 99.9% reliability",
+      "Achieved sub-second query response times for real-time analytics",
+      "Reduced infrastructure costs by 40% through optimization",
+      "Enabled real-time business intelligence and decision making"
+    ],
+    "lessons": [
+      "Real-time systems require careful architecture planning for scalability",
+      "Monitoring and alerting are critical for production streaming systems",
+      "Performance optimization can significantly reduce operational costs"
+    ],
+    "links": {
+      "caseStudy": "/projects/realtime-analytics-platform"
+    },
+    "cta_label": "Read Full Case Study",
+    "cover_image": {
+      "src": "/images/realtime-analytics-cover.svg",
+      "alt": "Real-time Analytics Platform dashboard showing streaming metrics"
+    }
+  }
+]
