@@ -1,0 +1,48 @@
+name: Weekly NEXUS Project Sync
+
+on:
+  schedule:
+    - cron: '0 7 * * 0'
+  workflow_dispatch:
+
+jobs:
+  sync-projects:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AGENT_GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sync NEXUS projects
+        env:
+          AGENT_GITHUB_TOKEN: ${{ secrets.AGENT_GITHUB_TOKEN }}
+        run: python scripts/sync_projects.py
+
+      - name: Commit and push
+        run: |
+          git config user.email "atlas@portfolio.dev"
+          git config user.name "ATLAS Agent"
+          git add public/projects_data.json
+          git diff --staged --quiet || git commit -m "chore: weekly NEXUS sync $(date '+%Y-%m-%d')"
+          git push origin main || true
+
+      - name: Notify sync complete
+        if: always()
+        env:
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          COUNT=$(python3 -c "import json; print(json.load(open('public/projects_data.json'))['total_projects'])" 2>/dev/null || echo "?")
+          curl --ssl-reqd \
+            --url "smtps://smtp.gmail.com:465" \
+            --user "naveenkanaparthi9@gmail.com:${GMAIL_APP_PASSWORD}" \
+            --mail-from "naveenkanaparthi9@gmail.com" \
+            --mail-rcpt "naveenkanaparthi9@gmail.com" \
+            --upload-file <(printf "Subject: Portfolio Synced - %s Projects\n\nPortfolio updated!\nProjects: %s\nLive at: https://portfolio-windsurf.vercel.app" "${COUNT}" "${COUNT}") \
+            || true

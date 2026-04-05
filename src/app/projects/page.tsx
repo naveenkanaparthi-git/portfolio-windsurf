@@ -1,181 +1,208 @@
 "use client";
 
-import { useState } from "react";
-import { Search, Filter } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ProjectCard } from "@/components/sections/project-card";
-import { projects } from "@/lib/data";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Github, Star, Zap, Search } from "lucide-react";
+import { AnimatedSection } from "@/components/ui/animated-section";
 
-const domains = ["All", "ETL", "Real-time", "MLOps", "Analytics"];
-const technologies = ["All", "Python", "Dagster", "Airflow", "Kafka", "BigQuery", "Snowflake", "dbt", "AWS", "GCP", "Azure", "Databricks", "Spark", "Terraform", "Delta Lake", "Great Expectations"];
+interface Project {
+  id: string;
+  name: string;
+  repo_name: string;
+  description: string;
+  github_url: string;
+  category: string;
+  tech_stack: string[];
+  date: string;
+  built_by_nexus: boolean;
+  wow_factor: number;
+  summary: string;
+}
+
+interface ProjectsData {
+  last_updated: string;
+  total_projects: number;
+  projects: Project[];
+}
 
 export default function ProjectsPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDomain, setSelectedDomain] = useState("All");
-  const [selectedTech, setSelectedTech] = useState("All");
+  const [data, setData] = useState<ProjectsData | null>(null);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
 
-  const filteredProjects = projects.filter((project) => {
-    const matchesSearch = 
-      project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    const matchesDomain = 
-      selectedDomain === "All" || 
-      project.domain.toLowerCase().includes(selectedDomain.toLowerCase());
-    
-    const matchesTech = 
-      selectedTech === "All" || 
-      project.tags.some(tag => tag.toLowerCase().includes(selectedTech.toLowerCase()));
+  useEffect(() => {
+    fetch("/projects_data.json")
+      .then((r) => r.json())
+      .then((d) => { setData(d); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
 
-    return matchesSearch && matchesDomain && matchesTech;
-  });
+  const categories = data
+    ? ["All", ...Array.from(new Set(data.projects.map((p) => p.category)))]
+    : ["All"];
 
-  const clearFilters = () => {
-    setSearchQuery("");
-    setSelectedDomain("All");
-    setSelectedTech("All");
-  };
+  const filtered = data?.projects.filter((p) => {
+    const matchCat = category === "All" || p.category === category;
+    const matchSearch =
+      !search ||
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.description.toLowerCase().includes(search.toLowerCase()) ||
+      p.tech_stack.some((t) => t.toLowerCase().includes(search.toLowerCase()));
+    return matchCat && matchSearch;
+  }) ?? [];
 
   return (
-    <div className="container max-w-screen-xl mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Projects</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          A comprehensive collection of data engineering projects demonstrating expertise in 
-          pipeline development, real-time analytics, MLOps, and scalable data architectures.
-        </p>
-      </div>
+    <main className="min-h-screen bg-[#0a0a0f] pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-6">
+        <AnimatedSection className="text-center mb-16">
+          <span className="text-cyan-400 font-mono text-sm tracking-widest uppercase">Portfolio</span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mt-3">
+            Data Engineering{" "}
+            <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </h1>
+          <p className="text-slate-500 mt-4 max-w-2xl mx-auto">
+            Production-grade projects built by the{" "}
+            <span className="text-purple-400 font-mono font-semibold">NEXUS AI Agent</span> — auto-updated weekly.
+          </p>
+          {data && (
+            <div className="mt-4 text-slate-600 text-sm font-mono">
+              {data.total_projects} projects • last synced {data.last_updated.slice(0, 10)}
+            </div>
+          )}
+        </AnimatedSection>
 
-      {/* Filters */}
-      <div className="mb-8 space-y-4">
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-          {/* Search */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
+        {/* Filters */}
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+          <div className="relative flex-1">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600" />
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search projects, tech stack..."
+              className="w-full pl-9 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-slate-300 placeholder:text-slate-600 text-sm outline-none focus:border-indigo-500/50 transition-colors"
             />
           </div>
-
-          {/* Domain Filter */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <Filter className="h-4 w-4" />
-                Domain: {selectedDomain}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {domains.map((domain) => (
-                <DropdownMenuItem
-                  key={domain}
-                  onClick={() => setSelectedDomain(domain)}
-                >
-                  {domain}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Technology Filter */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <Filter className="h-4 w-4" />
-                Tech: {selectedTech}
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {technologies.map((tech) => (
-                <DropdownMenuItem
-                  key={tech}
-                  onClick={() => setSelectedTech(tech)}
-                >
-                  {tech}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          {/* Clear Filters */}
-          {(searchQuery || selectedDomain !== "All" || selectedTech !== "All") && (
-            <Button variant="ghost" onClick={clearFilters}>
-              Clear All
-            </Button>
-          )}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setCategory(cat)}
+                className={`px-4 py-2 rounded-xl text-xs font-medium transition-all ${
+                  category === cat
+                    ? "bg-indigo-600 text-white"
+                    : "bg-white/5 border border-white/10 text-slate-400 hover:text-slate-200 hover:border-indigo-500/30"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Active Filters */}
-        <div className="flex flex-wrap gap-2">
-          {searchQuery && (
-            <Badge variant="secondary" className="gap-1">
-              Search: {searchQuery}
-              <button
-                onClick={() => setSearchQuery("")}
-                className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
-              >
-                ×
-              </button>
-            </Badge>
-          )}
-          {selectedDomain !== "All" && (
-            <Badge variant="secondary" className="gap-1">
-              Domain: {selectedDomain}
-              <button
-                onClick={() => setSelectedDomain("All")}
-                className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
-              >
-                ×
-              </button>
-            </Badge>
-          )}
-          {selectedTech !== "All" && (
-            <Badge variant="secondary" className="gap-1">
-              Tech: {selectedTech}
-              <button
-                onClick={() => setSelectedTech("All")}
-                className="ml-1 hover:bg-muted-foreground/20 rounded-full p-0.5"
-              >
-                ×
-              </button>
-            </Badge>
-          )}
+        {/* Projects Grid */}
+        {loading ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="bg-white/3 rounded-2xl h-64 animate-pulse border border-white/5" />
+            ))}
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-24 text-slate-600">
+            <Zap size={48} className="mx-auto mb-4 opacity-20" />
+            <p className="text-lg">
+              {data?.total_projects === 0
+                ? "NEXUS agent is generating the first project now..."
+                : "No projects match your search."}
+            </p>
+          </div>
+        ) : (
+          <AnimatePresence mode="popLayout">
+            <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filtered.map((project, i) => (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ delay: i * 0.05 }}
+                  className="bg-white/3 border border-white/8 rounded-2xl p-6 flex flex-col gap-4 hover:border-indigo-500/30 hover:-translate-y-1 transition-all duration-300 group"
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        {project.built_by_nexus && (
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-mono">
+                            NEXUS
+                          </span>
+                        )}
+                        <span className="text-slate-600 text-xs font-mono">{project.date}</span>
+                      </div>
+                      <h3 className="text-white font-semibold text-lg leading-tight group-hover:text-indigo-300 transition-colors">
+                        {project.name}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-1 text-yellow-400 ml-2 shrink-0">
+                      <Star size={13} fill="currentColor" />
+                      <span className="text-xs font-mono">{project.wow_factor}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-slate-500 text-sm leading-relaxed flex-1 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech_stack.slice(0, 4).map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs px-2 py-0.5 rounded-md bg-indigo-500/10 text-cyan-400 border border-indigo-500/20 font-mono"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.tech_stack.length > 4 && (
+                      <span className="text-xs px-2 py-0.5 text-slate-600">
+                        +{project.tech_stack.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-3 pt-2 border-t border-white/5">
+                    <span className="text-xs px-2 py-1 rounded-lg bg-white/5 text-slate-500">
+                      {project.category}
+                    </span>
+                    <div className="flex-1" />
+                    <a
+                      href={project.github_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1.5 text-slate-500 hover:text-indigo-400 transition-colors text-sm"
+                    >
+                      <Github size={14} /> Code
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+        <div className="text-center mt-10 text-slate-600 text-sm font-mono">
+          Showing {filtered.length} of {data?.total_projects ?? 0} projects •{" "}
+          <a
+            href="https://github.com/naveenkanaparthi-git"
+            target="_blank"
+            rel="noreferrer"
+            className="text-indigo-500 hover:text-indigo-400 transition-colors"
+          >
+            github.com/naveenkanaparthi-git
+          </a>
         </div>
       </div>
-
-      {/* Results Count */}
-      <div className="mb-6">
-        <p className="text-sm text-muted-foreground">
-          Showing {filteredProjects.length} of {projects.length} projects
-        </p>
-      </div>
-
-      {/* Projects Grid */}
-      {filteredProjects.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground mb-4">No projects found matching your criteria.</p>
-          <Button onClick={clearFilters}>Clear Filters</Button>
-        </div>
-      )}
-    </div>
+    </main>
   );
 }

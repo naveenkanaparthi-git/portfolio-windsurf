@@ -1,17 +1,17 @@
 {
-  "name": "Naveen Kanaparthi",
-  "title": "Data Transformation Engineer",
-  "location": "San Diego, California",
+  "name": "Naveen Kumar",
+  "title": "Senior Data Engineer",
+  "location": "San Diego, CA",
   "email": "naveenkanaparthi9@gmail.com",
-  "phone": "660-528-1923",
-  "website": "https://naveenkanaparthi.dev",
+  "phone": "",
+  "website": "https://portfolio-windsurf.vercel.app",
   "social": {
-    "github": "https://github.com/naveenkanaparthi",
-    "linkedin": "https://linkedin.com/in/naveenkanaparthi"
+    "github": "https://github.com/naveenkanaparthi-git",
+    "linkedin": "https://www.linkedin.com/in/naveenkumar-data/"
   },
-  "bio": "Data Transformation Engineer with 2+ years of experience in data engineering and analytics. Skilled in building and optimizing data pipelines, automating workflows, and leveraging cloud platforms for efficient data processing and analysis.",
-  "shortBio": "Data Engineer specializing in pipeline optimization and analytics automation",
-  "longBio": "I'm a Data Transformation Engineer with 2+ years of experience in data engineering and analytics. Currently working as a consultant with Tata Consultancy Services Ltd, where I'm deployed to Qualcomm Technologies Inc in San Diego, California (September 2024 - Present). Previously worked with Apple Inc as a client (November 2023 - August 2024) and as a Data Analyst at Myriad Genetics (January 2023 - November 2023).\n\nMy expertise includes building and optimizing data pipelines, automating workflows, and leveraging cloud platforms for efficient data processing and analysis. I'm proficient in Python, SQL, AWS, GCP, and various data engineering tools. I hold a Master's degree in Applied Computer Science from Northwest Missouri State University and a Bachelor's in Computer Science and Engineering from JNTU Hyderabad.\n\nI'm passionate about transforming raw data into meaningful insights that drive business decisions and improve operational efficiency.",
-  "resumeUrl": "/resume/README.txt",
+  "bio": "Senior Data Engineer with expertise in building scalable real-time and batch data pipelines. I architect end-to-end data platforms that power AI/ML systems at scale. Currently building autonomous AI agents that generate production-grade data engineering projects automatically.",
+  "shortBio": "Senior Data Engineer specializing in AI/ML pipelines, real-time streaming, and autonomous data agents",
+  "longBio": "I'm a Senior Data Engineer passionate about building production-grade data infrastructure that scales. My work spans real-time streaming pipelines with Apache Kafka and Flink, batch ETL workflows orchestrated by Airflow and dbt, and ML feature engineering platforms. I've designed cloud-native data architectures on AWS and Azure, and I'm currently building autonomous AI agents (NEXUS, APOLLO, ATLAS) that automate data engineering project generation. Based in San Diego, CA.",
+  "resumeUrl": "/resume/resume.pdf",
   "avatar": "/images/avatar.svg"
 }

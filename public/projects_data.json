@@ -1,0 +1,32 @@
+{
+  "last_updated": "2026-04-05T00:00:00Z",
+  "total_projects": 2,
+  "projects": [
+    {
+      "id": "llm-pipeline-optimizer",
+      "name": "LLM Pipeline Optimizer",
+      "repo_name": "llm-pipeline-optimizer",
+      "description": "AI-powered SQL query optimizer using Anthropic Claude API. Three-stage pipeline: static analysis via sqlglot AST detecting 11 anti-patterns, Claude LLM optimization suggestions with rewritten SQL, and DuckDB in-memory benchmarking. Supports 6 SQL dialects. 77 pytest tests.",
+      "github_url": "https://github.com/naveenkanaparthi-git/llm-pipeline-optimizer",
+      "category": "AI/ML — LLM-Powered",
+      "tech_stack": ["Anthropic Claude API", "sqlglot", "DuckDB", "Pydantic v2", "Python 3.11", "Typer", "pytest"],
+      "date": "2026-04-05",
+      "built_by_nexus": true,
+      "wow_factor": 9,
+      "summary": "AI-powered SQL query optimizer using Claude API with 77 tests and 6 dialect support"
+    },
+    {
+      "id": "nyc-taxi-anomaly-detector",
+      "name": "NYC Taxi Anomaly Detector",
+      "repo_name": "nyc-taxi-anomaly-detector",
+      "description": "Real-time NYC taxi trip anomaly detection pipeline. Kafka producer streams synthetic trip data at 50 msgs/sec. PySpark Structured Streaming applies a pre-trained Isolation Forest model with 7 engineered features. Anomalous trips routed to separate Kafka topics. 17 unit tests.",
+      "github_url": "https://github.com/naveenkanaparthi-git/nyc-taxi-anomaly-detector",
+      "category": "Real-time Streaming",
+      "tech_stack": ["Kafka", "PySpark", "Isolation Forest", "Pydantic", "Docker Compose", "GitHub Actions"],
+      "date": "2026-04-05",
+      "built_by_nexus": true,
+      "wow_factor": 8,
+      "summary": "Real-time anomaly detection at 50 msgs/sec with Kafka + PySpark + ML"
+    }
+  ]
+}
