@@ -1,7 +1,58 @@
 {
-  "last_updated": "2026-04-05T07:53:31.675501+00:00",
-  "total_projects": 2,
+  "last_updated": "2026-04-12T08:00:36.622664+00:00",
+  "total_projects": 4,
   "projects": [
+    {
+      "id": "feature-store-duckdb",
+      "name": "Feature Store Duckdb",
+      "repo_name": "feature-store-duckdb",
+      "description": "Production-grade feature store built on DuckDB with append-only storage and SQL window-function-based time-travel retrieval (point-in-time correct, prevents training-serving skew). FeatureRegistry tracks feature group schemas and metadata. Statistical drift detection: PSI (Population Stability Index",
+      "github_url": "https://github.com/naveenkanaparthi-git/feature-store-duckdb",
+      "category": "MLOps",
+      "tech_stack": [
+        "DuckDB 0.10+",
+        "pandas",
+        "numpy",
+        "scipy",
+        "Pydantic v2",
+        "pydantic-settings",
+        "FastAPI",
+        "Uvicorn",
+        "Typer + Rich",
+        "Python 3.11",
+        "pytest + httpx",
+        "GitHub Actions"
+      ],
+      "date": "2026-04-09",
+      "built_by_nexus": true,
+      "wow_factor": 10,
+      "summary": "Production-grade feature store built on DuckDB with append-only storage and SQL window-function-based time-travel retrieval (point-in-time correct, pr"
+    },
+    {
+      "id": "semantic-data-catalog",
+      "name": "Semantic Data Catalog",
+      "repo_name": "semantic-data-catalog",
+      "description": "A production-grade semantic data catalog with SQLAlchemy schema crawling (SQLite/PostgreSQL/DuckDB), AI-powered table and column descriptions via Anthropic Claude (claude-sonnet-4-6), and vector-based semantic search using sentence-transformers + ChromaDB. Includes data profiling (null rates, cardin",
+      "github_url": "https://github.com/naveenkanaparthi-git/semantic-data-catalog",
+      "category": "AI/ML",
+      "tech_stack": [
+        "Python 3.11",
+        "SQLAlchemy 2.0",
+        "Anthropic Claude (claude-sonnet-4-6)",
+        "sentence-transformers",
+        "ChromaDB",
+        "FastAPI",
+        "Typer + Rich",
+        "Pydantic v2",
+        "pydantic-settings",
+        "pytest",
+        "GitHub Actions"
+      ],
+      "date": "2026-04-07",
+      "built_by_nexus": true,
+      "wow_factor": 10,
+      "summary": "A production-grade semantic data catalog with SQLAlchemy schema crawling (SQLite/PostgreSQL/DuckDB), AI-powered table and column descriptions via Anth"
+    },
     {
       "id": "nyc-taxi-anomaly-detector",
       "name": "Nyc Taxi Anomaly Detector",
