@@ -1,240 +1,301 @@
-import { Calendar, MapPin, Award, BookOpen } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { MapPin, ArrowUpRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { person } from "@/lib/data";
 import { generateMetadata } from "@/lib/metadata";
 
 export const metadata = generateMetadata({
   title: "About",
-  description: "Learn more about my background, experience, and approach to data engineering.",
-  url: "/about"
+  description: "Background, experience, and engineering philosophy of Naveen Kumar — Senior Data Engineer.",
+  url: "/about",
 });
 
 const timeline = [
   {
-    year: "Sep 2024 - Present",
-    title: "Data Transformation Engineer (Consultant)",
-    company: "Tata Consultancy Services Ltd (Client: Qualcomm Technologies Inc)",
-    description: "Building and optimizing data pipelines and analytics workflows to improve data freshness, reliability, and stakeholder access to insights.",
+    period: "Sep 2024 – Present",
+    role: "Data Transformation Engineer",
+    company: "Qualcomm Technologies Inc",
+    via: "via TCS",
+    current: true,
     achievements: [
       "Design and support production data workflows and automation for reporting and analytics",
       "Partner with cross-functional stakeholders to define data requirements and validate outputs",
-      "Improve pipeline robustness through validation, monitoring, and operational best practices"
-    ]
+      "Improve pipeline robustness through validation, monitoring, and operational best practices",
+    ],
   },
   {
-    year: "Nov 2023 - Aug 2024",
-    title: "Data Engineer (Consultant)",
-    company: "Tata Consultancy Services Ltd (Client: Apple Inc)",
-    description: "Implemented and optimized data pipelines and validation workflows to support analytics and reporting use cases.",
+    period: "Nov 2023 – Aug 2024",
+    role: "Data Engineer",
+    company: "Apple Inc",
+    via: "via TCS",
+    current: false,
     achievements: [
       "Built and maintained data extraction and transformation workflows for analytics consumers",
-      "Improved data quality through validation and repeatable checks",
-      "Collaborated with stakeholders to deliver reliable datasets for decision-making"
-    ]
+      "Improved data quality through validation and repeatable checks across 95%+ schema coverage",
+      "Collaborated with stakeholders to deliver reliable datasets enabling data-driven decisions",
+    ],
   },
   {
-    year: "Jan 2023 - Nov 2023",
-    title: "Data Analyst",
+    period: "Jan 2023 – Nov 2023",
+    role: "Data Analyst",
     company: "Myriad Genetics",
-    description: "Developed dashboards and performed data analysis for clinical and operational decision-making.",
+    via: "",
+    current: false,
     achievements: [
-      "Developed dashboards and visualizations in Power BI and Tableau for tracking key metrics",
-      "Wrote SQL queries for data extraction and validation from relational databases",
-      "Partnered with cross-functional teams to deliver actionable insights"
-    ]
-  }
+      "Developed Power BI & Tableau dashboards tracking key clinical metrics for 50+ users",
+      "Wrote SQL queries for data extraction and validation processing 1M+ records/day",
+      "Delivered actionable insights reducing report generation time by 75%",
+    ],
+  },
 ];
 
 const principles = [
-  {
-    title: "Reliability First",
-    description: "Data systems must be dependable. I design with failure modes in mind, implement comprehensive monitoring, and ensure graceful degradation."
-  },
-  {
-    title: "Performance Matters",
-    description: "Efficient data processing saves time and money. I optimize for both query performance and resource utilization."
-  },
-  {
-    title: "Quality by Design",
-    description: "Data quality issues compound quickly. I build validation, testing, and monitoring into every pipeline from day one."
-  },
-  {
-    title: "Scalable Architecture",
-    description: "Systems should grow with business needs. I design modular, extensible architectures that can handle increasing data volumes."
-  }
+  { num: "01", title: "Reliability First",      body: "Data systems must be dependable. I design with failure modes in mind, implement comprehensive monitoring, and ensure graceful degradation at every layer." },
+  { num: "02", title: "Performance Matters",    body: "Efficient data processing saves time and money. I optimize for query performance and resource utilization, treating compute cost as a product requirement." },
+  { num: "03", title: "Quality by Design",      body: "Data quality issues compound quickly. Validation, testing, and observability are built into every pipeline from day one — not bolted on later." },
+  { num: "04", title: "Scalable Architecture",  body: "Systems should grow with business needs. I design modular, extensible data platforms that handle increasing volumes without re-architecture." },
+];
+
+const certifications = [
+  "Google Cloud Professional Data Engineer (In Progress)",
+  "Apache Airflow Fundamentals",
+  "Kafka Streams & ksqlDB",
 ];
 
 export default function AboutPage() {
   return (
-    <div className="container max-w-4xl mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">About Me</h1>
-        <p className="text-lg text-muted-foreground">
-          Data Engineer passionate about building reliable, scalable data infrastructure
-        </p>
-      </div>
+    <main className="min-h-screen bg-[#080810] pt-28 pb-24">
+      <div className="max-w-5xl mx-auto px-6">
 
-      {/* Bio Section */}
-      <section className="mb-16">
-        <Card>
-          <CardContent className="p-8">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary">NK</span>
-              </div>
-              <div>
-                <h2 className="text-2xl font-bold">{person.name}</h2>
-                <p className="text-muted-foreground flex items-center gap-2">
-                  <MapPin className="h-4 w-4" />
-                  {person.location}
-                </p>
-              </div>
-            </div>
-            <p className="text-muted-foreground leading-relaxed">
-              {person.longBio}
-            </p>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Engineering Principles */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Engineering Principles</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {principles.map((principle, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle className="text-lg">{principle.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm">{principle.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+        {/* ── Page header ───────────────────────────────── */}
+        <div className="mb-20">
+          <span
+            className="text-violet-400 text-xs tracking-[0.25em] uppercase block mb-6"
+            style={{ fontFamily: "var(--font-mono)" }}
+          >
+            About Me
+          </span>
+          <h1
+            className="text-white mb-8"
+            style={{
+              fontSize: "clamp(3rem, 8vw, 6.5rem)",
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              letterSpacing: "-0.04em",
+              lineHeight: 0.95,
+            }}
+          >
+            Data Engineer.<br />
+            <span className="gradient-text">Problem Solver.</span>
+          </h1>
+          <p className="text-slate-400 text-lg leading-relaxed max-w-2xl">
+            {person.longBio}
+          </p>
+          <div className="flex items-center gap-2 mt-5 text-slate-600 text-sm">
+            <MapPin size={13} />
+            <span>{person.location}</span>
+          </div>
         </div>
-      </section>
 
-      {/* Experience Timeline */}
-      <section className="mb-16">
-        <h2 className="text-3xl font-bold mb-8 text-center">Experience</h2>
-        <div className="space-y-8">
-          {timeline.map((item, index) => (
-            <Card key={index}>
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div>
-                    <CardTitle className="text-xl">{item.title}</CardTitle>
-                    <p className="text-muted-foreground font-medium">{item.company}</p>
+        <div className="divider mb-20" />
+
+        {/* ── Engineering Principles ─────────────────────── */}
+        <section className="mb-24">
+          <div className="flex items-end justify-between mb-12">
+            <h2
+              className="text-white"
+              style={{
+                fontSize: "clamp(1.75rem, 4vw, 3rem)",
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                letterSpacing: "-0.03em",
+              }}
+            >
+              Engineering<br />Principles
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+            {principles.map((p) => (
+              <div
+                key={p.num}
+                className="bg-[#080810] hover:bg-[#0e0e1a] p-8 transition-colors duration-300"
+              >
+                <span
+                  className="text-slate-700 text-xs block mb-5"
+                  style={{ fontFamily: "var(--font-mono)" }}
+                >
+                  {p.num}
+                </span>
+                <h3
+                  className="text-white text-lg mb-3"
+                  style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
+                >
+                  {p.title}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className="divider mb-24" />
+
+        {/* ── Experience Timeline ────────────────────────── */}
+        <section className="mb-24">
+          <h2
+            className="text-white mb-14"
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 3rem)",
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Experience
+          </h2>
+
+          <div className="relative">
+            {/* vertical line */}
+            <div className="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-violet-500/40 via-violet-500/15 to-transparent hidden md:block" />
+
+            <div className="flex flex-col gap-12">
+              {timeline.map((item, i) => (
+                <div key={i} className="flex gap-6 group">
+                  {/* dot */}
+                  <div className="hidden md:flex flex-col items-center pt-1.5 shrink-0">
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${
+                      item.current
+                        ? "border-violet-400 bg-violet-400/20"
+                        : "border-slate-700 bg-[#080810]"
+                    }`}>
+                      {item.current && (
+                        <span className="w-1.5 h-1.5 bg-violet-400 rounded-full animate-pulse" />
+                      )}
+                    </div>
                   </div>
-                  <Badge variant="outline" className="gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {item.year}
-                  </Badge>
+
+                  {/* Content */}
+                  <div className="flex-1 glass-card p-8 hover:border-violet-500/15 transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
+                      <div>
+                        <h3
+                          className="text-white text-lg mb-1"
+                          style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
+                        >
+                          {item.role}
+                        </h3>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-violet-400 text-sm font-medium">{item.company}</span>
+                          {item.via && (
+                            <span className="text-slate-600 text-xs">{item.via}</span>
+                          )}
+                        </div>
+                      </div>
+                      <span
+                        className={`shrink-0 text-xs px-3 py-1 rounded-full ${
+                          item.current
+                            ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                            : "bg-white/[0.04] text-slate-500 border border-white/[0.07]"
+                        }`}
+                        style={{ fontFamily: "var(--font-mono)" }}
+                      >
+                        {item.period}
+                      </span>
+                    </div>
+                    <ul className="flex flex-col gap-2.5">
+                      {item.achievements.map((a, j) => (
+                        <li key={j} className="flex items-start gap-3 text-sm text-slate-500">
+                          <span className="w-1 h-1 rounded-full bg-violet-500/60 mt-2 shrink-0" />
+                          {a}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">{item.description}</p>
-                <div>
-                  <h4 className="font-medium mb-2">Key Achievements:</h4>
-                  <ul className="space-y-1">
-                    {item.achievements.map((achievement, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Skills & Interests */}
-      <section className="mb-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Award className="h-5 w-5" />
-                Certifications & Learning
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  Google Cloud Professional Data Engineer (In Progress)
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  Apache Airflow Fundamentals
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  Kafka Streams and ksqlDB
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BookOpen className="h-5 w-5" />
-                Interests & Community
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  Open source contributions to data tools
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  Data engineering meetups and conferences
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1 h-1 bg-primary rounded-full"></div>
-                  Technical writing and knowledge sharing
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="text-center">
-        <Card>
-          <CardContent className="p-8">
-            <h2 className="text-2xl font-bold mb-4">Let&apos;s Build Something Together</h2>
-            <p className="text-muted-foreground mb-6">
-              I&apos;m always interested in challenging data engineering problems and opportunities 
-              to work with innovative teams building the future of data-driven organizations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              >
-                Get In Touch
-              </Link>
-              <Link
-                href="/resume"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-              >
-                View Resume
-              </Link>
+              ))}
             </div>
-          </CardContent>
-        </Card>
-      </section>
-    </div>
+          </div>
+        </section>
+
+        <div className="divider mb-24" />
+
+        {/* ── Certifications & Interests ─────────────────── */}
+        <section className="mb-24">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="glass-card p-8">
+              <h3
+                className="text-white text-base mb-6"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
+              >
+                Certifications & Learning
+              </h3>
+              <ul className="flex flex-col gap-4">
+                {certifications.map((cert, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-slate-500">
+                    <span className="w-1 h-1 rounded-full bg-violet-500/60 mt-2 shrink-0" />
+                    {cert}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="glass-card p-8">
+              <h3
+                className="text-white text-base mb-6"
+                style={{ fontFamily: "var(--font-display)", fontWeight: 700 }}
+              >
+                Interests & Community
+              </h3>
+              <ul className="flex flex-col gap-4">
+                {[
+                  "Open source contributions to data tools",
+                  "Data engineering meetups and conferences",
+                  "Technical writing and knowledge sharing",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-slate-500">
+                    <span className="w-1 h-1 rounded-full bg-amber-500/60 mt-2 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <div className="divider mb-20" />
+
+        {/* ── CTA ────────────────────────────────────────── */}
+        <section className="text-center py-4">
+          <h2
+            className="text-white mb-5"
+            style={{
+              fontSize: "clamp(1.75rem, 4vw, 3rem)",
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Let&apos;s Build Something
+          </h2>
+          <p className="text-slate-500 mb-8 max-w-md mx-auto text-sm leading-relaxed">
+            Always interested in challenging data engineering problems and innovative teams building the future of data-driven organizations.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-black font-bold rounded-xl hover:bg-violet-50 transition-all text-sm"
+            >
+              Get In Touch <ArrowUpRight size={14} />
+            </Link>
+            <Link
+              href="/resume"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-white/15 text-white font-semibold rounded-xl hover:border-white/30 hover:bg-white/[0.04] transition-all text-sm"
+            >
+              View Resume <ExternalLink size={14} />
+            </Link>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }

@@ -1,153 +1,138 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
 import { person } from "@/lib/data";
 
-const footerNavigation = [
-  { name: "Home", href: "/" },
+const nav = [
   { name: "Projects", href: "/projects" },
-  { name: "Stack", href: "/stack" },
-  { name: "About", href: "/about" },
-  { name: "Resume", href: "/resume" },
-  { name: "Contact", href: "/contact" },
+  { name: "Stack",    href: "/stack"    },
+  { name: "About",    href: "/about"    },
+  { name: "Resume",   href: "/resume"   },
+  { name: "Contact",  href: "/contact"  },
 ];
 
-const socialLinks = [
-  {
-    name: "GitHub",
-    href: person.social.github,
-    icon: Github,
-  },
-  {
-    name: "LinkedIn", 
-    href: person.social.linkedin,
-    icon: Linkedin,
-  },
-  {
-    name: "Twitter",
-    href: person.social.x, 
-    icon: Twitter,
-  },
-  {
-    name: "Email",
-    href: `mailto:${person.email}`,
-    icon: Mail,
-  },
-].filter(
-  (
-    link
-  ): link is {
-    name: string;
-    href: string;
-    icon: typeof Github;
-  } => link.name === "Email" || typeof link.href === "string"
-);
+const socials = [
+  { name: "GitHub",   href: person.social.github,   icon: Github   },
+  { name: "LinkedIn", href: person.social.linkedin,  icon: Linkedin },
+  { name: "Email",    href: `mailto:${person.email}`, icon: Mail    },
+].filter((s): s is typeof s & { href: string } => typeof s.href === "string");
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/40 bg-background/95">
-      <div className="container max-w-screen-xl px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Brand & Description */}
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center space-x-2 mb-4">
-              <span className="text-lg font-bold tracking-tight">
-                {person.name}
+    <footer className="border-t border-white/[0.06] bg-[#08080f]">
+      {/* Top section */}
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="flex flex-col md:flex-row justify-between gap-12">
+
+          {/* Brand column */}
+          <div className="max-w-sm">
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-5 group">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-600 to-amber-500 flex items-center justify-center shrink-0">
+                <span
+                  className="text-[11px] font-bold text-white"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  NK
+                </span>
+              </div>
+              <span
+                className="text-white font-semibold text-sm"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Naveen Kumar
               </span>
             </Link>
-            <p className="text-sm text-muted-foreground mb-4 max-w-md">
-              {person.shortBio}
+            <p className="text-slate-500 text-sm leading-relaxed mb-6">
+              Senior Data Engineer building autonomous AI agents and
+              production-grade data pipelines that power real-time analytics.
             </p>
-            <div className="flex items-center space-x-2">
-              {socialLinks.map((social) => (
-                <Button
-                  key={social.name}
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className="h-8 w-8 p-0"
+            <div className="flex items-center gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.name}
+                  href={s.href}
+                  target={s.name !== "Email" ? "_blank" : undefined}
+                  rel={s.name !== "Email" ? "noopener noreferrer" : undefined}
+                  aria-label={s.name}
+                  className="p-2 rounded-xl border border-white/[0.07] text-slate-500 hover:text-white hover:border-white/20 transition-all duration-200"
                 >
-                  <Link
-                    href={social.href}
-                    target={social.name !== "Email" ? "_blank" : undefined}
-                    rel={social.name !== "Email" ? "noopener noreferrer" : undefined}
-                    aria-label={social.name}
-                  >
-                    <social.icon className="h-4 w-4" />
-                  </Link>
-                </Button>
+                  <s.icon size={15} />
+                </a>
               ))}
             </div>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4">Navigation</h3>
-            <ul className="space-y-2">
-              {footerNavigation.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+          {/* Nav columns */}
+          <div className="flex gap-16">
+            <div>
+              <p
+                className="text-white text-xs font-semibold tracking-widest uppercase mb-5"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Pages
+              </p>
+              <ul className="flex flex-col gap-3">
+                {nav.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      href={item.href}
+                      className="text-slate-500 hover:text-white text-sm transition-colors duration-150 flex items-center gap-1 group"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <p
+                className="text-white text-xs font-semibold tracking-widest uppercase mb-5"
+                style={{ fontFamily: "var(--font-mono)" }}
+              >
+                Contact
+              </p>
+              <ul className="flex flex-col gap-3">
+                <li>
+                  <a
+                    href={`mailto:${person.email}`}
+                    className="text-slate-500 hover:text-violet-400 text-sm transition-colors"
                   >
-                    {item.name}
+                    {person.email}
+                  </a>
+                </li>
+                <li>
+                  <span className="text-slate-600 text-sm">{person.location}</span>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-1 text-sm text-violet-400 hover:text-violet-300 transition-colors mt-1"
+                  >
+                    Send a message <ArrowUpRight size={12} />
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Quick Actions */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4">Quick Actions</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/resume"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
-                >
-                  Download Resume
-                  <ExternalLink className="h-3 w-3" />
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  Get In Touch
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/projects"
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  View Projects
-                </Link>
-              </li>
-            </ul>
+              </ul>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-border/40 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-xs text-muted-foreground">
-            © {currentYear} {person.name}. All rights reserved.
+      {/* Bottom bar */}
+      <div className="border-t border-white/[0.05]">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-slate-600 text-xs" style={{ fontFamily: "var(--font-mono)" }}>
+            © {year} Naveen Kumar · All rights reserved
           </p>
-          <div className="flex items-center space-x-4 mt-4 sm:mt-0">
-            <Link
-              href="/legal"
-              className="text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
-              Privacy Policy
+          <div className="flex items-center gap-4">
+            <Link href="/legal" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">
+              Privacy
             </Link>
-            <span className="text-xs text-muted-foreground">•</span>
-            <p className="text-xs text-muted-foreground">
+            <span className="text-slate-700">·</span>
+            <p className="text-slate-700 text-xs" style={{ fontFamily: "var(--font-mono)" }}>
               Built with Next.js & Tailwind CSS
             </p>
           </div>
