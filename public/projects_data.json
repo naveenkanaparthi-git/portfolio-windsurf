@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-07T03:01:26.244318+00:00",
-  "total_projects": 6,
+  "last_updated": "2026-05-07T05:16:35.934068+00:00",
+  "total_projects": 10,
   "projects": [
     {
       "id": "real-time-environmental-monitoring",
@@ -41,6 +41,88 @@
       "built_by_nexus": true,
       "wow_factor": 7,
       "summary": "Dynamically optimize SQL queries for diverse workloads."
+    },
+    {
+      "id": "contextual-code-search",
+      "name": "Contextual Code Search",
+      "repo_name": "contextual-code-search",
+      "description": "Semantic search for code snippets using vector embeddings.",
+      "github_url": "https://github.com/naveenkanaparthi-git/contextual-code-search",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "Python 3.11",
+        "Pandas",
+        "Faiss",
+        "Transformers",
+        "FastAPI",
+        "Docker"
+      ],
+      "date": "2026-05-07",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "Semantic search for code snippets using vector embeddings."
+    },
+    {
+      "id": "real-time-data-synchronizer",
+      "name": "Real Time Data Synchronizer",
+      "repo_name": "real-time-data-synchronizer",
+      "description": "Efficient CDC for seamless data synchronization across systems.",
+      "github_url": "https://github.com/naveenkanaparthi-git/real-time-data-synchronizer",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "Debezium",
+        "Kafka",
+        "Python 3.11",
+        "FastAPI",
+        "PostgreSQL",
+        "Snowflake",
+        "dbt"
+      ],
+      "date": "2026-05-07",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "Efficient CDC for seamless data synchronization across systems."
+    },
+    {
+      "id": "decentralized-data-governance",
+      "name": "Decentralized Data Governance",
+      "repo_name": "decentralized-data-governance",
+      "description": "Automate data governance in a data mesh environment.",
+      "github_url": "https://github.com/naveenkanaparthi-git/decentralized-data-governance",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "Python 3.11",
+        "Apache Kafka",
+        "dbt",
+        "OpenLineage",
+        "Dagster",
+        "Snowflake"
+      ],
+      "date": "2026-05-07",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "Automate data governance in a data mesh environment."
+    },
+    {
+      "id": "real-time-air-quality-monitor",
+      "name": "Real Time Air Quality Monitor",
+      "repo_name": "real-time-air-quality-monitor",
+      "description": "Real-time air quality monitoring and alert system.",
+      "github_url": "https://github.com/naveenkanaparthi-git/real-time-air-quality-monitor",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "Apache Kafka",
+        "Flink",
+        "Python 3.11",
+        "Pandas v2",
+        "InfluxDB",
+        "Grafana",
+        "FastAPI"
+      ],
+      "date": "2026-05-07",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "Real-time air quality monitoring and alert system."
     },
     {
       "id": "feature-store-duckdb",
