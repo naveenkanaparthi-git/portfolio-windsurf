@@ -1,7 +1,47 @@
 {
-  "last_updated": "2026-05-03T08:44:27.996660+00:00",
-  "total_projects": 4,
+  "last_updated": "2026-05-07T03:01:26.244318+00:00",
+  "total_projects": 6,
   "projects": [
+    {
+      "id": "real-time-environmental-monitoring",
+      "name": "Real Time Environmental Monitoring",
+      "repo_name": "real-time-environmental-monitoring",
+      "description": "A lakehouse for processing and analyzing IoT environmental data.",
+      "github_url": "https://github.com/naveenkanaparthi-git/real-time-environmental-monitoring",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "Apache Iceberg",
+        "Apache Flink",
+        "DuckDB",
+        "Pydantic v2",
+        "AWS Lambda",
+        "Python 3.11"
+      ],
+      "date": "2026-05-07",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "A lakehouse for processing and analyzing IoT environmental data."
+    },
+    {
+      "id": "adaptive-sql-query-optimizer",
+      "name": "Adaptive Sql Query Optimizer",
+      "repo_name": "adaptive-sql-query-optimizer",
+      "description": "Dynamically optimize SQL queries for diverse workloads.",
+      "github_url": "https://github.com/naveenkanaparthi-git/adaptive-sql-query-optimizer",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "PostgreSQL 15",
+        "Python 3.11",
+        "SQLAlchemy 2.0",
+        "Apache Kafka",
+        "DuckDB",
+        "Ray"
+      ],
+      "date": "2026-05-07",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "Dynamically optimize SQL queries for diverse workloads."
+    },
     {
       "id": "feature-store-duckdb",
       "name": "Feature Store Duckdb",
