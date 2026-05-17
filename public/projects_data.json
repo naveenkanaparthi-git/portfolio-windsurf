@@ -1,7 +1,27 @@
 {
-  "last_updated": "2026-05-10T08:49:53.874924+00:00",
-  "total_projects": 10,
+  "last_updated": "2026-05-17T09:01:31.422310+00:00",
+  "total_projects": 11,
   "projects": [
+    {
+      "id": "dynamic-feature-store",
+      "name": "Dynamic Feature Store",
+      "repo_name": "dynamic-feature-store",
+      "description": "Scalable, real-time feature engineering for ML models.",
+      "github_url": "https://github.com/naveenkanaparthi-git/dynamic-feature-store",
+      "category": "Data Engineering",
+      "tech_stack": [
+        "Feast",
+        "Apache Kafka",
+        "Pandas v2",
+        "TensorFlow Extended",
+        "FastAPI",
+        "Docker"
+      ],
+      "date": "2026-05-11",
+      "built_by_nexus": true,
+      "wow_factor": 7,
+      "summary": "Scalable, real-time feature engineering for ML models."
+    },
     {
       "id": "real-time-environmental-monitoring",
       "name": "Real Time Environmental Monitoring",
